@@ -1,32 +1,35 @@
 package frc.robot.motor;
 
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.SparkAbsoluteEncoder;
-import com.revrobotics.SparkAnalogSensor;
+import com.revrobotics.spark.SparkMax;
+import com.revrobotics.spark.SparkLowLevel.MotorType;
+import com.revrobotics.spark.SparkAbsoluteEncoder;
+import com.revrobotics.spark.SparkAnalogSensor;
 import com.revrobotics.RelativeEncoder;
-import com.revrobotics.CANSparkBase.IdleMode;
-import com.revrobotics.CANSparkLowLevel.MotorType;
+import com.revrobotics.spark.config.SparkMaxConfig;
+import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 
 public class Motor {
     
-    public final CANSparkMax motor;
+    public final SparkMax motor;
     public SparkAnalogSensor analogEncoder;
     public SparkAbsoluteEncoder absoluteEncoder;
     public RelativeEncoder inBuiltEncoder;
     public final MotorInfo info;
+    public SparkMaxConfig config;
 
     public Motor(MotorInfo info, boolean analog, boolean absolute) {
 
         this.info = info;
-        this.motor = new CANSparkMax(info.ID, MotorType.kBrushless);
+        this.motor = new SparkMax(info.ID, MotorType.kBrushless);
         this.inBuiltEncoder = motor.getEncoder();
-        motor.setIdleMode(IdleMode.kBrake);
+        config = new SparkMaxConfig();
+        config.idleMode(IdleMode.kBrake);
 
         if (analog) {
-            this.analogEncoder = motor.getAnalog(SparkAnalogSensor.Mode.kAbsolute);
+            this.analogEncoder = motor.getAnalog();
         } 
         if (absolute) {
-            this.absoluteEncoder = motor.getAbsoluteEncoder(SparkAbsoluteEncoder.Type.kDutyCycle);
+            this.absoluteEncoder = motor.getAbsoluteEncoder();
         } 
 
     }

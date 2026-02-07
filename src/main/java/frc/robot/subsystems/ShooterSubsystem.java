@@ -11,7 +11,6 @@ public class ShooterSubsystem extends SubsystemBase {
 
     public ShooterSubsystem() {
         cannon = new PairedMotors(Constants.CANNON_MAIN, Constants.CANNON_SLAVE, false, false);
-        cannon.SetRampRate(0.75);
     }
 
     public void start(double speed) {

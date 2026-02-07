@@ -6,9 +6,9 @@ package frc.robot;
 
 import frc.robot.motor.MotorInfo;
 import frc.robot.swervemodule.SwerveModuleInfo;
-import com.pathplanner.lib.util.HolonomicPathFollowerConfig;
-import com.pathplanner.lib.util.PIDConstants;
-import com.pathplanner.lib.util.ReplanningConfig;
+import com.pathplanner.lib.controllers.PPHolonomicDriveController;
+import com.pathplanner.lib.util.swerve.*;
+import com.pathplanner.lib.config.PIDConstants;
 
 import edu.wpi.first.math.geometry.Translation2d;
 
@@ -68,12 +68,9 @@ public final class Constants {
 
     public static final double maxModuleSpeed = 4.5; // M/S
 
-    public static final HolonomicPathFollowerConfig pathFollowerConfig = new HolonomicPathFollowerConfig(
+     public static final PPHolonomicDriveController pathFollowerConfig = new PPHolonomicDriveController(
       new PIDConstants(5.0, 0, 0), // Translation constants 
-      new PIDConstants(5.0, 0, 0), // Rotation constants 
-      maxModuleSpeed, 
-      flModuleOffset.getNorm(), // Drive base radius (distance from center to furthest module) 
-      new ReplanningConfig()
+      new PIDConstants(5.0, 0, 0) // Rotation constants 
     );
   }
 

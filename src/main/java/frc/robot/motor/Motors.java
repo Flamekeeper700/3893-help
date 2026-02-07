@@ -11,12 +11,6 @@ public class Motors {
 
     }
 
-    public void SetRampRate(double rate) {
-
-        motor.motor.setClosedLoopRampRate(rate);
-
-    }
-
     public void Spin(double speed) {
 
         motor.motor.set(speed);

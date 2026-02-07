@@ -62,15 +62,11 @@ public class RobotSubsystem extends SubsystemBase {
     public RobotSubsystem() {
         
         this.cannon = new PairedMotors(Constants.CANNON_MAIN, Constants.CANNON_SLAVE, false, false);
-        this.cannon.SetRampRate(0.75);
         this.pivot = new PairedMotors(Constants.PIVOT_MAIN, Constants.PIVOT_SLAVE, false, true);
-        this.pivot.mainMotor.absoluteEncoder.setInverted(true);
-        this.pivot.SetRampRate(0.1);
         this.pivotpid = new PIDController(0.01, 0, 0.0001);
         this.pivotpid.enableContinuousInput(0, 360);
         this.pivotpid.setTolerance(0.25);
         this.intake = new Motors(Constants.INTAKE, false, false);
-        this.intake.SetRampRate(0.25);
         this.climb = new Motors(Constants.CLIMB_ARM, false, false);
         this.belt = new Motors(Constants.FEEDER_BELT, false, false);
 

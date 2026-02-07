@@ -1,6 +1,6 @@
 package frc.robot.motor;
 
-import com.revrobotics.CANSparkMax;
+import com.revrobotics.spark.SparkMax;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -26,12 +26,6 @@ public class PairedMotors {
 
     }
     
-    public void SetRampRate(double rate) {
-
-        mainMotor.motor.setClosedLoopRampRate(rate);
-        slaveMotor.motor.setClosedLoopRampRate(rate);
-
-    }
 
     public void debugSmartDashboard() {
         

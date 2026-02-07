@@ -18,8 +18,6 @@ public class PivotSubsystem extends SubsystemBase {
         pivotSpeed = 0;
 
         pivot = new PairedMotors(Constants.PIVOT_MAIN, Constants.PIVOT_SLAVE, false, true);
-        pivot.mainMotor.absoluteEncoder.setInverted(true);
-        pivot.SetRampRate(0.1);
 
         pivotpid = new PIDController(0.01, 0, 0.0001);
         pivotpid.enableContinuousInput(0, 360);

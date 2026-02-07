@@ -4,10 +4,10 @@
 
 package frc.robot.swervemodule;
 
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.SparkAnalogSensor;
-import com.revrobotics.CANSparkBase.IdleMode;
-import com.revrobotics.CANSparkLowLevel.MotorType;
+import com.revrobotics.spark.SparkMax;
+import com.revrobotics.spark.SparkAnalogSensor;
+import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
+import com.revrobotics.spark.SparkLowLevel.MotorType;
 
 import edu.wpi.first.math.controller.PIDController;
 import frc.robot.Constants;
@@ -18,8 +18,8 @@ import frc.robot.utils.VectorR;
 public class SwerveModule {
   // HARDWARE
 
-  public final CANSparkMax angleMotor;
-  public final CANSparkMax driveMotor;
+  public final SparkMax angleMotor;
+  public final SparkMax driveMotor;
   public final SparkAnalogSensor orientationEncoder;
 
   // INFORMATION
@@ -30,13 +30,10 @@ public class SwerveModule {
   public SwerveModule(SwerveModuleInfo info) {
     
     this.info = info;
-    this.angleMotor = new CANSparkMax(info.TURN_ID, MotorType.kBrushless);
-    this.driveMotor = new CANSparkMax(info.DRIVE_ID, MotorType.kBrushless);
-    this.orientationEncoder = angleMotor.getAnalog(SparkAnalogSensor.Mode.kAbsolute);
+    this.angleMotor = new SparkMax(info.TURN_ID, MotorType.kBrushless);
+    this.driveMotor = new SparkMax(info.DRIVE_ID, MotorType.kBrushless);
+    this.orientationEncoder = angleMotor.getAnalog();
     this.defensiveAngleDeg = VectorR.fromCartesian(info.X, info.Y).getAngle();
-    angleMotor.setIdleMode(IdleMode.kCoast);
-    driveMotor.setIdleMode(IdleMode.kBrake);
-    driveMotor.setClosedLoopRampRate(0.5);
     
   }
 
